@@ -18,13 +18,15 @@ struct ContentView: View {
     @State private var alertMessage = ""
     @State private var showingAlert = false
     
+    let cofeeCups = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,16,17 ,18, 19, 20]
+    
     
     var body: some View {
         NavigationView {
-            Form {
-                VStack(alignment: .leading, spacing: 0){
-                    Text("When you want to wake up?")
-                        .font(.headline)
+            
+                Section (header: Text("When you want to wake up?")){
+//                    Text("When you want to wake up?")
+//                        .font(.headline)
                     
                     DatePicker("Please enter your time", selection: $wakeUp, displayedComponents: .hourAndMinute).labelsHidden()
                     // .datePickerStyle(WheelDatePickerStyle())
@@ -34,20 +36,31 @@ struct ContentView: View {
                         Stepper(value: $sleepAmount, in: 4...12, step: 0.25){
                             Text("\(sleepAmount, specifier: "%g") hours")
                         }
-                        Text("Daily coffee intake")
+                        
+                        VStack(spacing: 8.0) {
+                            
+                         Text("Daily coffee intake")
                             .font(.headline)
                         
-                        Stepper(value: $coffeeAmount, in: 1...20) {
-                            if coffeeAmount == 1 {
-                                Text("One cup")
-                            }
-                            else {
-                                Text("\(coffeeAmount) cups")
+//                        Stepper(value: $coffeeAmount, in: 1...20) {
+//                            if coffeeAmount == 1 {
+//                                Text("One cup")
+//                            }
+//                            else {
+//                                Text("\(coffeeAmount) cups")
+//                            }
+//                        }
+                        Picker ("Coffee amount", selection: $coffeeAmount) {
+                            ForEach(1 ..< cofeeCups.count) {
+                                Text("\(self.cofeeCups[$0])")
                             }
                         }
-                    }
+                        }
+                        .padding()
                 }
-            }
+                }
+                .padding()
+            
             .navigationBarTitle("BetterRest")
             .navigationBarItems(trailing:
                                     Button(action: calculateBedTime) {
