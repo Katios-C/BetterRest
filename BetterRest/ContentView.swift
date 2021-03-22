@@ -24,7 +24,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             
+<<<<<<< HEAD
                 Section (header: Text("When you want to wake up? main")){
+=======
+                Section (header: Text("When you want to wake up? kate")){
+>>>>>>> kate
 //                    Text("When you want to wake up?")
 //                        .font(.headline)
                     
